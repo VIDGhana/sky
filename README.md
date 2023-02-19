@@ -1,11 +1,21 @@
 # SKY Docker Image
 
 Welcome to the world of containers and virtualization!!! \
-This docker image defines the environment for Computer Science Sky Lab for Systems Computing.
+This docker image defines the environment for Computer Science Sky Lab for VisionInDream Computing
+
+## Pull the image from docker hub [https://hub.docker.com/r/visionindream/sky] 
+
+* In your terminal 
+```bash
+$ docker pull visionindream/sky
+```
+
+### Documentation Reference [https://docs.docker.com/engine/reference/commandline/run/]
 
 
+## Building it own your own system
 
-## Building from scratch with random generated name
+### Building from scratch with random generated name
 
 * `docker build .`
 
@@ -18,11 +28,28 @@ For more detailed output, use:
 ```bash
 $ docker build -t sky:cs .
 ```
-* Run Docker Image Call Scala and Name it as Scala
+* Run Docker Image Call sky:cs and Name it as os
 ```bash
 $ docker run --name os -dit sky:cs # or
+
+$ docker  run  -v `pwd`:`pwd` -w `pwd` -i -t  ubuntu pwd
 $ docker run -v ~/:/home --name os -it sky:cs
+$ docker run -v /doesnt/exist:/foo -w /foo -i -t ubuntu bash
+# The -v flag mounts the current working directory into the container. The -w lets the command being executed inside the current working directory, by changing into the directory to the value returned by pwd. So this combination executes the command using the container, but inside the current working directory.
+
+
+
+$ docker run -p 127.0.0.1:80:8080/tcp ubuntu bash # This binds port 8080 of the container to TCP port 80 on 127.0.0.1 of the host machine
+
+PS C:\> docker run -v c:\foo:d: microsoft/nanoserver cmd /s /c type d:\somefile.txt
+Contents of file
 ```
+* Set working directory (-w, --workdir)
+
+* docker  run -w /path/to/dir/ -i -t  ubuntu pwd
+* The -w lets the command being executed inside directory given, here /path/to/dir/. If the path does not exist it is created inside the container.
+
+
 * Log into the running Docker container
 ```bash
 $ docker exec -it os bash
